@@ -1,15 +1,23 @@
-//require the http module that ships with Node.js and makes it accessible through the variable http
-var http = require("http");
-//call the function createServer
-//this function returns and object and has the method named listen giving
-//the numeric port name 8888
+var http = require('http');
+var url = require('url')
 
-http.createServer(function(request, response) {
-  //we are passing the create server function an anonymous function
-  response.writeHead(200, { "Content-Type": "text/plain" });
-  response.write("Hello World");
-  response.end();
-  })
-  //we are passing the create server function an anonymous function
-  //which could be written: http.createServer(onRequest).listen(8888);
-  .listen(8888);
+//We’ve added the handle parameter to our start() function, 
+//and pass the handle object on to the route() callback, as 
+//its first parameter”
+ 
+function start(route, handle) {
+   function onRequest(request, response) {
+   var pathname = url.parse(request.url).pathname;
+   console.log('Request for '  + pathname + ' received.');  
+   
+   route(handle, pathname); 
+
+   response.writeHead(200, { 'Content-Type': 'text/plain' });
+   response.write('Hello World');
+   response.end();
+}
+http.createServer(onRequest).listen(8888);
+
+console.log('Server has started');
+}
+exports.start = start;
