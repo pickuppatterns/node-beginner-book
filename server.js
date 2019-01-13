@@ -22,4 +22,12 @@ function start(route, handle) {
  
  exports.start = start;
 
- 
+ //We basically did three things here: First, we defined that we expect the encoding 
+//  of the received data to be UTF-8, we added an event listener for the “data” event 
+//  which step by step fills our new postData variable whenever a new chunk of POST data 
+//  arrives, and we moved the call to our router into the end event callback to make sure 
+//  it’s only called when all POST data is gathered. We also pass the POST data into the 
+//  router, because we are going to need it in our request handlers.
+
+// Adding the console logging on every chunk that is received probably is a bad idea for 
+// production code (megabytes of POST data, remember?), but makes sense to see what happens.
