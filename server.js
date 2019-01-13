@@ -1,9 +1,6 @@
 var http = require('http');
 var url = require('url')
 
-//We’ve added the handle parameter to our start() function, 
-//and pass the handle object on to the route() callback, as 
-//its first parameter”
  
 function start(route, handle) {
    function onRequest(request, response) {
