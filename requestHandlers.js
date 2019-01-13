@@ -10,9 +10,9 @@ var querystring = require("querystring"),
                 'charset=UTF-8" />'+
                 '</head>'+
                 '<body>'+
-                '<form action="/upload" method="post">'+
-                '<textarea name="text" rows="20" cols="60"></textarea>'+
-                '<input type="submit" value="Submit text" />'+
+                '<form action="/upload" encrype="multipart/form-data" '+ 'method="post">'+
+                '<input type="file" name="upload">'+
+                '<input type="submit" value="upload file" />'+
                 '</form>'+
                 '</body>'+
                 '</html>';
